@@ -1,0 +1,12 @@
+
+<h3 class="title"> SALES BY MONTH FOR: {{ (prodFilter$) }}</h3> 
+<div class="chart">
+    <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'bar'">
+    </canvas>            
+</div>
+    

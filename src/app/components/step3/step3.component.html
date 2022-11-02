@@ -1,0 +1,43 @@
+<div class="container">
+    <!-- <pre> {{ filterForm.value | json}} </pre> -->
+
+    <form #filterForm="ngForm" >
+        <div class="filters">
+            <div class="category">                
+                <mat-form-field appearance="fill">
+                    <mat-label>Seleccione la categoría</mat-label>
+                    <mat-select disableRipple [(ngModel)]="selectedCateg" name="categ" id="categ" #categ (valueChange)="changeProd()" required>
+                        <mat-option  *ngFor="let categ of categories" [value]="categ"> {{categ}} </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="filterForm.invalid">Debe seleccionar una categoría</mat-error>
+                </mat-form-field>
+                
+            </div>
+            <div class="product">
+                <mat-form-field appearance="fill">
+                    <mat-label>Producto</mat-label>
+                    <mat-select disableRipple [(ngModel)]="selectedProd" name="prod" id="prod" (valueChange)="changeModel()">
+                        <mat-option *ngFor="let product of changeProd()" [value]="product.productName"> {{ product.productName }} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="model">
+                <mat-form-field appearance="fill">
+                    <mat-label>Marca</mat-label>
+                    <mat-select disableRipple [(ngModel)]="selectedModel" name="model" id="model" (selectionChange)="onSubmit(filterForm.value)" >
+                        <mat-option *ngFor="let product of changeModel()" [value]="product"> {{ product }} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form> 
+    
+    <div class="chart">
+        <mat-card class="chart-card">
+               
+            <mat-card-content class="content">
+                <app-chart></app-chart>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
